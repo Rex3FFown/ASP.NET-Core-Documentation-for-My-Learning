@@ -1,8 +1,4 @@
-Entity Framework Core'da (EF Core), ilişkiler (ilişkisel veritabanı tabloları arasındaki bağlantılar) tanımlamak için kullanılan anotasyonlar ve kavramlar oldukça önemlidir. Bu ilişkiler **one-to-many** (birden çoğa), **many-to-one** (çoktan bire) ve **many-to-many** (çoktan çoğa) gibi ilişki türlerine göre şekillenir. Ayrıca, EF Core'da bu ilişkiler modelleme ve anotasyonlarla belirlenir.
 
-Aşağıda bu ilişkilerle birlikte en yaygın EF Core anotasyonlarını ve açıklamalarını içeren genişletilmiş bir rehber bulabilirsiniz:
-
----
 
 ### EF Core Anotasyonları ve İlişkiler
 
