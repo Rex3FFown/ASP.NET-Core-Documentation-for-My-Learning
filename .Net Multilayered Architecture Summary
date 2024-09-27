@@ -1,0 +1,78 @@
+### 1. **Core Katmanı**
+   - **Amaç:** Bu katman genel olarak projedeki temel veri modellerini (Entities), DTO'ları ve interface'leri içerir. Aynı zamanda cross-cutting concerns dediğimiz güvenlik, doğrulama vb. işlemler de bu katmana dahil edilebilir.
+
+   ```
+   Core
+   ├── DTOs
+   │   └── ExampleDto.cs
+   ├── Entities
+   │   └── ExampleEntity.cs
+   ├── Interfaces
+   │   └── IExampleService.cs
+   ├── Mappers
+   │   └── ExampleMapper.cs
+   └── Security
+       └── JwtTokenGenerator.cs
+   ```
+
+### 2. **Business Katmanı (Service)**
+   - **Amaç:** Business katmanı, iş mantığını ve servis işlemlerini içerir. Servisler, Core katmanındaki interface'leri implement eder ve iş kuralları burada uygulanır.
+
+   ```
+   Business
+   ├── Services
+   │   ├── ExampleService.cs
+   │   └── AnotherExampleService.cs
+   └── Validators
+       └── ExampleValidator.cs
+   ```
+
+### 3. **Data Katmanı**
+   - **Amaç:** Veri erişim katmanıdır. Bu katman genellikle Entity Framework Core gibi ORM'lerin kullanıldığı katmandır. Veritabanı context'ini ve repository'leri içerir.
+
+   ```
+   Data
+   ├── Context
+   │   └── ApplicationDbContext.cs
+   ├── Repositories
+   │   ├── IExampleRepository.cs
+   │   └── ExampleRepository.cs
+   └── UnitOfWork
+       └── UnitOfWork.cs
+   ```
+
+### 4. **API (Presentation) Katmanı**
+   - **Amaç:** Bu katman, projeye dış dünyadan erişimi sağlar. API controller'ları burada bulunur ve genellikle istekleri alır, servislere yönlendirir ve sonuçları döner.
+
+   ```
+   API
+   ├── Controllers
+   │   └── ExampleController.cs
+   ├── Requests
+   │   └── ExampleRequest.cs
+   └── Responses
+       └── ExampleResponse.cs
+   ```
+
+### 5. **Infrastructure Katmanı**
+   - **Amaç:** Proje boyunca kullanılan dış bağımlılıkların ya da servislerin tanımlandığı katmandır. Örneğin, e-posta servisleri, dosya yönetimi gibi harici sistemlerle entegrasyonlar burada yer alabilir.
+
+   ```
+   Infrastructure
+   ├── Email
+   │   └── EmailService.cs
+   └── Logging
+       └── LogService.cs
+   ```
+
+---
+
+### Yapının Detaylandırılması
+
+1. **Core** katmanı, domain modelini içerir. Bu yüzden `Entities`, `DTOs`, `Mappers`, `Security` gibi genel bileşenler burada yer alır.
+2. **Business (Service)** katmanı, iş kurallarının uygulandığı ve servislerin bulunduğu katmandır.
+3. **Data** katmanı, veritabanı işlemlerinin yönetildiği katmandır. `Context` (veritabanı bağlantısı), repository ve UnitOfWork gibi yapılar burada bulunur.
+4. **API (Presentation)** katmanı, genellikle sunum katmanıdır. Web API controller'ları burada olur. `Request` ve `Response` modelleri de bu katmanda yer alır.
+5. **Infrastructure** katmanı, dış dünya ile entegrasyon ve altyapı servislerinin yer aldığı katmandır. E-posta gönderme, dosya yönetimi, logging gibi işlemler burada yapılır.
+
+Bu katmanlar ve dosya yapısı, projeyi daha sürdürülebilir ve modüler hale getirir. Her katman, diğer katmanlardan bağımsızdır ve gerektiğinde bağımsız olarak test edilebilir ve yönetilebilir.
